@@ -24,16 +24,13 @@ jobs:
           fi
         done
 
-    - name: Get the last commit message
-      id: get_commit_message
-      run: echo "::set-output name=message::$(git log -1 --pretty=%B)"
-
     - name: Commit changes
       run: |
+        var="$(git log -1 --pretty=%B)"
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git add .
-        git commit -m "nb2py: ${{ steps.get_commit_message.outputs.message }}"
+        git commit -m "nb2py: $var"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
