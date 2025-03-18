@@ -2,7 +2,7 @@ name: Convert Jupyter Notebooks to Python Scripts
 
 on:
   push:
-
+  workflow_dispatch:
 jobs:
   convert_notebooks:
     runs-on: ubuntu-latest
